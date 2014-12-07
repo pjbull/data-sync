@@ -1,0 +1,7 @@
+[s3data]
+
+# should be relative to this configuration file
+data_root=data
+
+# must end with trailing slash; if spaces, enclose in quotes
+s3_data_root=s3://<FOLDER_TO_SYNC_WITH_DATA>
