@@ -12,21 +12,22 @@ Enables `git` integration with `s3cmd` to keep a data folder in sync as changes 
 
  1. `git clone` the repo
  2. `cd` into the repo
- 3. `pip install -e .`: this will install the package in editable mode so git pulling updates will be used next time you call the module.
+ 3. `pip install -e .` - This will install the package in editable mode so git pulling updates will be used next time you call the module.
+ 4. `data-sync-s3 install_hooks` Run this in a git repo root if you want git integration for that repo (see below for details)
 
- # Data Project Repository Structure
+# Data Project Repository Structure
 
 Repository must have a structure where the `.s3data` configuration file is in a sub-project directly below the root of the git working tree. I.e., `git_root/<sub_project>/.s3data`. You can have multiple sub-projects per single git repository. For example:
 
 ```
 git_root/
-    | ---- sub_project
-        | ---- data_folder      # this folder should be in .gitignore
-        | ---- .s3data          # config for data_folder
+    | ---- sub_project/
+        | ---- data_folder/      # this folder should be in .gitignore
+        | ---- .s3data           # config for data_folder
         ...
-    | ---- sub_project2         # another project
-        | ---- data_folder2     # this folder should be in .gitignore
-        | ---- .s3data          # config for data_folder2
+    | ---- sub_project2/         # another project
+        | ---- data_folder2/     # this folder should be in .gitignore
+        | ---- .s3data           # config for data_folder2
 ```
 
 # Options for `.s3data` file
