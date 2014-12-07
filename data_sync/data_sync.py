@@ -69,19 +69,18 @@ def main(work_path=None):
     if len(sys.argv) > 1:
         if sys.argv[1] == "install_hooks":
             install_hooks()
-        else:
-            print "Improper argument {}".format(sys.argv[1])
-    else:
-        try:
-            sync_engine_s3 = SyncEngineS3(work_path=work_path)
-            result = sync_engine_s3.sync()
+            return 0
 
-            if not result:
-                result = "No files to sync."
+    try:
+        sync_engine_s3 = SyncEngineS3(work_path=work_path)
+        result = sync_engine_s3.sync()
 
-            print result
-        except Exception as e:
-            print e.message
+        if not result:
+            result = "No files to sync."
+
+        print result
+    except Exception as e:
+        print e.message
 
 def git_hook():
     changed_files = check_output("git diff-tree -r --name-only --no-commit-id HEAD@{1} HEAD".split(" "))
